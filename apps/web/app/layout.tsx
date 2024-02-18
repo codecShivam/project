@@ -8,7 +8,11 @@ export const metadata: Metadata = {
   title: "SolCanvas",
   description: "SolCanvas is a decentralized platform.",
   openGraph: {
+    type: "website",
     url: 'https://solcanvas.vercel.app/',
+    title: 'SolCanvas',
+    description: 'SolCanvas is a decentralized platform.',
+    siteName: 'SolCanvas',
     images: {
       url: 'https://i.ibb.co/d5p56Y4/Screenshot-from-2024-02-18-16-21-00.png',
       alt: 'About Acme',
