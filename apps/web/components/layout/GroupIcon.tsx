@@ -9,5 +9,6 @@ export default function GroupIcon() {
             alt=""
             src={groupIcon}
         />
+        
     )
 }
