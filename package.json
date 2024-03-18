@@ -20,8 +20,5 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ],
-  "dependencies": {
-    "framer-motion": "^11.0.14"
-  }
+  ]
 }
