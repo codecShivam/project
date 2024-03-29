@@ -2,7 +2,6 @@ import React from "react";
 import Card from "./Card";
 import projectsData from "../data/projectsData.json";
 
-// Define the type for your project data
 interface Project {
   imageSrc: string;
   iconSrc: string;
@@ -10,16 +9,15 @@ interface Project {
   description: string;
 }
 
-// Function to split an array into chunks
 function splitIntoChunks<T>(array: T[], chunkSize: number): T[][] {
-    const chunks: T[][] = [];
+  const chunks: T[][] = [];
 
-    for (let i = 0; i < array.length; i += chunkSize) {
-        const chunk: T[] = array.slice(i, i + chunkSize);
-        chunks.push(chunk);
-    }
+  for (let i = 0; i < array.length; i += chunkSize) {
+    const chunk: T[] = array.slice(i, i + chunkSize);
+    chunks.push(chunk);
+  }
 
-    return chunks;
+  return chunks;
 }
 
 export default function Projects(): JSX.Element {
@@ -32,14 +30,13 @@ export default function Projects(): JSX.Element {
         <div key={rowIndex} className="flex sm:gap-12 gap-[4.688rem] justify-between w-full sm:flex-nowrap flex-wrap">
           {chunk.map((project: Project, colIndex: number) => (
             <Card
-              key={`${rowIndex}_${colIndex}`} // Ensure each Card has a unique key
+              key={`${rowIndex}_${colIndex}`}
               imageSrc={project.imageSrc}
               iconSrc={project.iconSrc}
               title={project.title}
               description={project.description}
             />
           ))}
-          {/* Render empty cards if the chunk doesn't contain two items */}
           {chunk.length < 2 && (
             <div className="w-[calc(50%-4.688rem)]"></div>
           )}
