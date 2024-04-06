@@ -1,5 +1,4 @@
 'use client'
-
 import CustomButton from "../../../components/button/CustomButton";
 import Link from "next/link";
 import Overview from "./components/Overview";
@@ -15,6 +14,7 @@ interface Project {
 }
 
 export default function ProjectDetails({ params }: ProjectDetailsProps) {
+    const [loading, setLoading] = useState(true); 
     const [projectData, setProjectData] = useState<{
         projectList: Project[];
         teamMemberList: any[];
@@ -43,7 +43,7 @@ export default function ProjectDetails({ params }: ProjectDetailsProps) {
             if (teamMemberError) {
                 throw teamMemberError;
             }
-            console.log(allProjects)
+
             const filteredProjects = allProjects.filter((project: Project) => {
                 if (project.name) {
                     return project.name.toLowerCase() === params.projectName.toLowerCase();
@@ -55,10 +55,19 @@ export default function ProjectDetails({ params }: ProjectDetailsProps) {
                 projectList: filteredProjects || [],
                 teamMemberList: teamMembers || [],
             });
+            setLoading(false); 
         } catch (error: any) {
             console.error('Error fetching project data:', error.message);
         }
     };
+
+    if (loading) {
+        return (
+            <div className="w-screen h-screen bg-black flex items-center justify-center">
+            <span className="loader"></span>
+            </div>
+        );
+    }
 
     return (
         <div className="flex flex-col xl:px-14 sm:px-10 px-4 xl:pt-16 sm:pt-12 pt-6 h-full bg-black min-h-screen">
