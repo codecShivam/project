@@ -17,7 +17,7 @@ export default function Features() {
   const handleButtonClick = (buttonName: string) => {
     setActiveButton(buttonName);
     setAnimationTrigger(true);
-    setTimeout(() => setAnimationTrigger(false), 500); // Reset animation trigger after 500ms
+    setTimeout(() => setAnimationTrigger(false), 500);
   };
 
   const getButtonShadow = (buttonName: string) => {
@@ -27,7 +27,7 @@ export default function Features() {
   };
 
   return (
-    <div className="w-[65.44rem] flex flex-col items-center justify-start pt-[0rem] px-[1.25rem] pb-[4.25rem] box-border gap-[7.31rem] max-w-full text-left text-[2.38rem] text-white  mq725:gap-[7.31rem] mq450:pb-[2.75rem] mq450:box-border mq1050:gap-[7.31rem]">
+    <div className="w-[65.44rem] flex flex-col items-center justify-start pt-[0rem] px-[1.25rem]  box-border gap-[7.31rem] max-w-full text-left text-[2.38rem] text-white  mq725:gap-[7.31rem] mq450:pb-[2.75rem] mq450:box-border mq1050:gap-[7.31rem]">
       <div className="self-stretch flex flex-row items-start justify-center gap-[1.81rem] mq1000:flex-wrap">
         {buttons.map(button => (
           <button
@@ -37,7 +37,7 @@ export default function Features() {
               button.name
             )} flex flex-row items-center justify-center box-border min-w-[9.31rem]  mq1000:flex-1`}
           >
-            <div className="relative text-[1.88rem] tracking-[0.02em] leading-[1.88rem] font-medium  text-white text-left z-[1] mq450:text-[1.13rem] mq450:leading-[1.13rem] mq1000:text-[1.4rem] mq1000:leading-[1.5rem]">
+            <div className="relative text-[1.25rem] tracking-[0.02em] leading-[1.875rem] font-medium font-nunito text-white  inline-block  z-[1] mq450:text-[1rem] mq450:leading-[1.5rem]">
               {button.label}
             </div>
           </button>

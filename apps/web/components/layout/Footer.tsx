@@ -1,51 +1,71 @@
 import Image from "next/image";
-import superteam from "../../public/images/superteam.png";
-import solana from "../../public/images/solana.png";
-import twitter from "../../public/images/twitter.png"
-import github from "../../public/images/github.png"
+import twitter from "../../public/Twitter.svg"
+import github from "../../public/Github.svg"
 
-export default function Footer() {
+interface FooterLinkProps {
+    title: string;
+    links: string[];
+}
+
+const FooterLink: React.FC<FooterLinkProps> = ({ title, links }) => {
     return (
-        <div className="flex xl:px-20 px-6 sm:py-12 whitespace-nowrap space-y-6 sm:space-y-0 sm:flex-nowrap flex-wrap sm:justify-between container">
-            <div className="flex sm:scale-[0.8] scale-[0.7] lg:scale-[1] lg:gap-20 gap-12  justify-between my-auto w-full sm:w-auto text-xl font-semibold tracking-wide leading-8 text-white uppercase max-md:flex-wrap max-md:max-w-full">
-                <a href="https://solana.com/" className="flex gap-4 hover:scale-[1.05] transform duration-300 transition-all ease-in">
-                    <Image
-                        loading="lazy"
-                        src={solana}
-                        alt="image"
-                        className="shrink-0 my-auto max-w-full aspect-[6.67] w-[175px]"
-                    />
+        <div className="flex flex-col flex-1">
+            <a href={`/${title.toLowerCase()}`} className="font-bold text-purple-400">{title}</a>
+            {links.map((link, index) => (
+                <a href={`/${link.toLowerCase()}`} key={index} className={`mt-${index === 0 ? 6 : 4}`}>
+                    {link}
                 </a>
-                <a href="https://superteam.fun/" className="flex gap-4 hover:scale-[1.05] transform duration-300 transition-all ease-in">
-                    <Image
-                        loading="lazy"
-                        src={superteam}
-                        alt="image"
-                        className="shrink-0 w-10 aspect-square"
-                    />
-                    <div className="flex-auto my-auto">Superteam</div>
-                </a>
-            </div>
-            <div className="flex lg:gap-20  sm:scale-[0.8] scale-[0.7] lg:scale-[1] w-full justify-between sm:w-auto text-2xl font-medium tracking-wide leading-8 text-zinc-400">
-                <a href="https://github.com/Solspeed" className="flex gap-4 py-1 bg-black hover:scale-[1.05] transform duration-300 transition-all ease-in">
-                    <Image
-                        loading="lazy"
-                        src={github}
-                        alt="image"
-                        className="shrink- aspect-square w-[54px]  object-cover"
-                    />
-                    <div className="flex-auto my-auto">Github</div>
-                </a>
-                <a href="https://twitter.com/Sol_canvas" className="flex py-px bg-black hover:scale-[1.05] transform duration-300 transition-all ease-in">
-                    <Image
-                        loading="lazy"
-                        src={twitter}
-                        alt="image"
-                        className="shrink- aspect-square w-[58px] object-cover"
-                    />
-                    <div className="flex-auto my-auto">Twitter</div>
-                </a>
-            </div>
+            ))}
         </div>
     );
 };
+
+const footerData = [
+    {
+        title: "Navigate",
+        links: ["Explore", "Earn", "Learn"],
+    },
+    {
+        title: "Help",
+        links: ["FAQ", "Contact", "About"],
+    },
+    {
+        title: "Legal",
+        links: ["Privacy", "Terms", "Cookies"],
+    },
+];
+
+function Footer() {
+    return (
+        <footer className="flex justify-center items-center sm:px-16 px-10 mq450:px-6  w-full bg-black max-md:px-5 max-md:max-w-full">
+            <div className="flex flex-col mt-5 w-full max-w-[936px] max-md:max-w-full">
+                <div className="flex gap-5 text-base tracking-wider text-purple-300 whitespace-nowrap max-md:flex-wrap max-md:pr-5 max-md:max-w-full">
+                    {footerData.map((data, index) => (
+                        <FooterLink key={index} title={data.title} links={data.links} />
+                    ))}
+                </div>
+                <div className="flex gap-5 sm:mt-14 mt-6 w-full max-md:flex-wrap max-md:mt-10 max-md:max-w-full">
+                    <div className="flex-auto text-base tracking-wider text-purple-300">
+                        © 2024 Solcanvas. All Rights Reserved.
+                    </div>
+                    <div className="flex gap-5 justify-between self-start">
+                        <Image
+                            loading="lazy"
+                            src={twitter}
+                            alt="Social media icon"
+                            className="shrink-0 w-5 aspect-square"
+                        />
+                        <Image
+                            loading="lazy"
+                            src={github}
+                            alt="Social media icon"
+                            className="shrink-0 w-5 aspect-square fill-purple-600"
+                        />
+                    </div>
+                </div>
+            </div>
+        </footer>
+    );
+}
+
+export default Footer;

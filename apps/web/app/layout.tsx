@@ -35,7 +35,6 @@ export default function RootLayout({
 
   const wallets = [
     new walletAdapterWallets.PhantomWalletAdapter(),
-    new walletAdapterWallets.SolflareWalletAdapter(),
   ];
 
 

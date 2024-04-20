@@ -3,8 +3,11 @@ import Overview from "../components/layout/Overview";
 import GroupIcon from "../components/layout/GroupIcon";
 import Features from "../components/layout/Features";
 import Footer from "../components/layout/Footer";
-import Timeline from "../components/layout/Timeline";
-import NewsLetter from "../components/layout/NewsLetter";
+import Faqs from "../components/layout/Faqs";
+import GetStarted from "../components/layout/GetStarted";
+import Community from "../components/layout/Community";
+import ConnectWallet from "../components/layout/ConnectWallet";
+import Solana from "../components/layout/Solana";
 
 export default function Home() {
   return (
@@ -24,10 +27,11 @@ export default function Home() {
           </div>
         </section>
         <Features />
-        <div className="md:block hidden">
-        <Timeline />
-        </div>
-        <NewsLetter />
+        <Solana />
+        <ConnectWallet />
+        <Community />
+        <GetStarted />
+        <Faqs />
         <Footer />
       </div>
     </main>
