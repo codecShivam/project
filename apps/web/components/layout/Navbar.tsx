@@ -109,7 +109,7 @@ export default function Navbar() {
 
     return (
         <animated.header
-            className="flex-1 rounded-full bg-black shadow-[0px_4px_50px_rgba(134,_122,_210,_0.2)] flex flex-row items-end justify-between pt-[1.31rem] pb-[1.44rem] pr-[1.44rem] pl-[1.75rem] box-border gap-[1.25rem] max-w-full text-left sm:text-[1rem] text-sm text-white relative"
+            className="flex-1 rounded-full  bg-black shadow-[0px_4px_50px_rgba(134,_122,_210,_0.2)] flex flex-row items-end justify-between pt-[1.31rem] pb-[1.44rem] pr-[1.44rem] pl-[1.75rem] box-border gap-[1.25rem] max-w-full text-left sm:text-[1rem] text-sm text-white relative"
             style={headerAnimation}
         >
             <div className="h-[4.88rem] w-[64.44rem] rounded-3xl bg-black shadow-[0px 4px 50px rgba(134, 122, 210, 0.2)] hidden max-w-full" />
