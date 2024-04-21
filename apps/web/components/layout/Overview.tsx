@@ -1,8 +1,8 @@
 export default function Overview() {
     return (
-        <div className="flex-1 flex flex-col items-center text-white justify-start gap-[4.38rem] max-w-full text-center text-[5.4rem]   mq725:gap-[4.38rem] mq1000:gap-[4.38rem]">
-            <h1 className="m-0 self-stretch  relative text-inherit sm:tracking-[0.0em] leading-[1.88rem] capitalize font-silkscreen font-bold  inline-block mq450:text-[2.3rem] mq450:shadow-xl mq450:leading-[0.75rem]  mq1000:text-[3.4rem] mq1000:leading-[3.9rem]">
-                <p className="[margin-block-start:0] text-nowrap font-inherit  [margin-block-end:100px] mq1000:[margin-block-end:60px] mq450:[margin-block-end:40px]">
+        <div className="flex-1 flex flex-col items-center text-white justify-start gap-[4.38rem] max-w-full text-center text-[5.1rem]   mq725:gap-[4.38rem] mq1000:gap-[4.38rem]">
+            <h1 className="m-0 self-stretch   relative text-inherit sm:tracking-[0.0em] leading-[1.88rem] capitalize font-silkscreen font-bold  inline-block  mq450:shadow-xl mq450:leading-[2.75rem] mq725:text-[2.2rem]  mq1000:text-[3.2rem] mq1000:leading-[3.9rem] text-center">
+                <p className="[margin-block-start:0] sm:text-nowrap font-inherit  [margin-block-end:100px] mq1000:[margin-block-end:60px] mq450:[margin-block-end:30px]">
                     EXPLORE SOLANA
                 </p>
                 <p className="m-0 mq450:leading-[2.5rem]">WITH EASE</p>
