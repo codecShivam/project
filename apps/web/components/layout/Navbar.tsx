@@ -80,7 +80,7 @@ export default function Navbar() {
                             </div>
                             <div className="flex flex-col items-center justify-center h-6">
                                 <animated.a
-                                    href="/marketplace"
+                                    href="/#"
                                     className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                                     style={fadeInAnimation}
                                 >
@@ -88,7 +88,7 @@ export default function Navbar() {
                                 </animated.a>
                                 {wallet.connected ? (
                                     <animated.a
-                                        href="/addproject"
+                                        href="/#"
                                         className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                                         style={fadeInAnimation}
                                     >
@@ -96,7 +96,7 @@ export default function Navbar() {
                                     </animated.a>
                                 ) : (
                                     <animated.a
-                                        href="/connectwallet"
+                                        href="/#"
                                         className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                                         style={fadeInAnimation}
                                     >
@@ -115,14 +115,14 @@ export default function Navbar() {
                 )}
                 <div className="hidden sm:flex items-baseline justify-center lg:justify-between gap-[1.94rem]">
                     <a
-                        href="/marketplace"
+                        href="/#"
                         className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1] transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                     >
                         Explore
                     </a>
                     {wallet.connected ? (
                         <a
-                            href="/addproject"
+                            href="/#"
                             className="rounded-full bg-black flex items-center justify-center px-[1.5rem] whitespace-nowrap z-[1] border-[1px] border-solid border-gray-400 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                         >
                             <div className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1]">
@@ -131,7 +131,7 @@ export default function Navbar() {
                         </a>
                     ) : (
                         <a
-                            href="/connectwallet"
+                            href="/#"
                             className="rounded-full bg-black flex items-center justify-center px-[1.5rem] whitespace-nowrap z-[1] border-[1px] border-solid border-gray-400 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                         >
                             <div className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1]">
