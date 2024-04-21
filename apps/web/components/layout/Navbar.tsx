@@ -15,11 +15,13 @@ export default function Navbar() {
     const { publicKey } = useWallet();
     const connection = useConnection();
     const wallet = useWallet();
+
     useEffect(() => {
         if (wallet.connected) {
             setConnected(true);
         }
     }, [connection, wallet]);
+
     useEffect(() => {
         setAnimateHeader(true);
     }, []);
@@ -39,15 +41,71 @@ export default function Navbar() {
         config: { tension: 250, friction: 20 },
     });
 
-    const fadeInAnimation = useSpring({
-        opacity: showMenu ? 1 : 0,
-        config: { tension: 250, friction: 20 },
-        delay: showMenu ? 5 : 0,
-    });
-
     const toggleMenu = () => {
         setShowMenu(!showMenu);
     };
+
+    const LargeScreenNavbar = () => (
+        <div className="hidden sm:flex items-baseline justify-center lg:justify-between gap-[1.94rem]">
+            <a
+                href="/#"
+                className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1] transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
+            >
+                Explore
+            </a>
+            {wallet.connected ? (
+                <a
+                    href="/#"
+                    className="rounded-full bg-black flex items-center justify-center px-[1.5rem] whitespace-nowrap z-[1] border-[1px] border-solid border-gray-400 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
+                >
+                    <div className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1]">
+                        Add project
+                    </div>
+                </a>
+            ) : (
+                <a
+                    href="/#"
+                    className="rounded-full bg-black flex items-center justify-center px-[1.5rem] whitespace-nowrap z-[1] border-[1px] border-solid border-gray-400 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
+                >
+                    <div className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1]">
+                        Add project
+                    </div>
+                </a>
+            )}
+        </div>
+    );
+
+    const SmallScreenNavbar = () => (
+        <div className="sm:hidden fixed -top-12 -left-6 h-screen   bg-black  z-50 ">
+            <div className="flex flex-col items-center justify-center pr-12 pl-8 pt-7">
+              
+                <a
+                    href="/#"
+                    className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
+                >
+                    Explore
+                </a>
+                {wallet.connected ? (
+                    <a
+                        href="/#"
+                        className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
+                    >
+                        Add project
+                    </a>
+                ) : (
+                    <a
+                        href="/#"
+                        className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
+                    >
+                        Add project
+                    </a>
+                )}
+                {/* <div className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md">
+                    <WalletMultiButton />
+                </div> */}
+            </div>
+        </div>
+    );
 
     return (
         <animated.header
@@ -58,8 +116,8 @@ export default function Navbar() {
             <div className="flex items-center justify-start gap-[0.44rem] font-nunito">
                 <Image src={logo} alt="solcanvas logo" className="sm:w-8 w-6 " />
                 <b className="relative tracking-[0.03em] leading-[1.875rem] uppercase inline-block ">
-              SolCanvas
-            </b>
+                    SolCanvas
+                </b>
             </div>
             <div className="flex items-center justify-center lg:justify-between gap-[1.94rem]">
                 <div className="sm:hidden">
@@ -67,81 +125,9 @@ export default function Navbar() {
                         {showMenu ? <FaTimes size={24} /> : <FaBars size={24} />}
                     </button>
                 </div>
-                {showMenu && (
-                    <animated.div
-                        className="sm:hidden fixed inset-0 bg-black bg-opacity-80 rounded-full z-50 "
-                        style={slideAnimation}
-                    >
-                        <animated.div style={fadeInAnimation}>
-                            <div className="flex items-center justify-end p-4">
-                                <button onClick={toggleMenu} className="text-white">
-                                    <FaTimes size={32} />
-                                </button>
-                            </div>
-                            <div className="flex flex-col items-center justify-center h-6">
-                                <animated.a
-                                    href="/#"
-                                    className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
-                                    style={fadeInAnimation}
-                                >
-                                    Explore
-                                </animated.a>
-                                {wallet.connected ? (
-                                    <animated.a
-                                        href="/#"
-                                        className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
-                                        style={fadeInAnimation}
-                                    >
-                                        Add project
-                                    </animated.a>
-                                ) : (
-                                    <animated.a
-                                        href="/#"
-                                        className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
-                                        style={fadeInAnimation}
-                                    >
-                                        Add project
-                                    </animated.a>
-                                )}
-                                <animated.div
-                                    className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
-                                    style={fadeInAnimation}
-                                >
-                                    <WalletMultiButton />
-                                </animated.div>
-                            </div>
-                        </animated.div>
-                    </animated.div>
-                )}
-                <div className="hidden sm:flex items-baseline justify-center lg:justify-between gap-[1.94rem]">
-                    <a
-                        href="/#"
-                        className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1] transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
-                    >
-                        Explore
-                    </a>
-                    {wallet.connected ? (
-                        <a
-                            href="/#"
-                            className="rounded-full bg-black flex items-center justify-center px-[1.5rem] whitespace-nowrap z-[1] border-[1px] border-solid border-gray-400 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
-                        >
-                            <div className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1]">
-                                Add project
-                            </div>
-                        </a>
-                    ) : (
-                        <a
-                            href="/#"
-                            className="rounded-full bg-black flex items-center justify-center px-[1.5rem] whitespace-nowrap z-[1] border-[1px] border-solid border-gray-400 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
-                        >
-                            <div className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1]">
-                                Add project
-                            </div>
-                        </a>
-                    )}
-
-                </div>
+                <LargeScreenNavbar />
             </div>
+                {showMenu && <SmallScreenNavbar />}
         </animated.header>
     );
 }
