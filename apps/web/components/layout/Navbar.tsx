@@ -10,7 +10,7 @@ import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 export default function Navbar() {
     const [showMenu, setShowMenu] = useState(false);
-    const [animateHeader, setAnimateHeader] = useState(false);
+    const [animateHeader, setAnimateHeader] = useState(true);
     const [connected, setConnected] = useState(false);
     const { publicKey } = useWallet();
     const connection = useConnection();
