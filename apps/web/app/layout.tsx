@@ -15,7 +15,7 @@ const metadata = {
   title: "SolCanvas",
   description: "SolCanvas is a decentralized platform.",
   openGraph: {
-    url: 'https://solcanvas.vercel.app/',
+    url: 'https://solcanvas.xyz/',
     images: {
       url: 'og.png',
       alt: 'About Acme',
