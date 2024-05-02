@@ -2,6 +2,7 @@ import Image from "next/image";
 import search from "../../../public/images/search.svg";
 import window from "../../../public/images/marketplace/window.svg";
 import { useState } from "react";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 interface ItemBarProps {
   isWalletClicked: boolean;
@@ -10,6 +11,9 @@ interface ItemBarProps {
 
 export default function ItemBar({ isWalletClicked, onWalletClick }: ItemBarProps) {
   const [searchQuery, setSearchQuery] = useState("");
+  const { publicKey } = useWallet();
+  const walletId = publicKey?.toString();
+
 
   const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
@@ -34,7 +38,7 @@ export default function ItemBar({ isWalletClicked, onWalletClick }: ItemBarProps
         </div>
         <div className="flex gap-4 items-center sm:justify-normal justify-evenly text-white">
           <a className="cursor-pointer" onClick={onWalletClick}>
-            Wallet
+            {walletId?.slice(0, 4) + "..." + walletId?.slice(-4)}
           </a>
           <div className="border border-solid bg-zinc-400 border-zinc-400 h-[30px] " />
           <a href="/addproject" className="shrink-0">Submit Project</a>
