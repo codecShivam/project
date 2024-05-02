@@ -4,10 +4,12 @@ import Image from "next/image";
 import supabase from "../../../../supabase";
 import { useFormData } from '../context/FormDataContext';
 import next from '../../../../public/images/next.png';
+import { useRouter } from "next/navigation";
 
 export default function Description() {
   const { formData, updateFormData } = useFormData();
   const [description, setDescription] = useState(formData.description || "");
+  const router = useRouter();
 
   const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const newDescription = event.target.value;
@@ -61,6 +63,8 @@ export default function Description() {
     } catch (error: any) {
       console.error("Error inserting data:", error.message);
       alert("Failed to insert data. Please try again.");
+    } finally {
+      router.push('/marketplace');
     }
   };
 

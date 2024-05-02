@@ -23,9 +23,9 @@ export default function GetStarted() {
                 <div className="self-stretch flex flex-row items-start justify-center py-[0rem] px-[1.25rem]">
                     <div className="flex flex-row items-start justify-start gap-[0.938rem]">
                         <button className="cursor-pointer [border:none] py-[0.313rem] px-[0.938rem] bg-[#A965F8] rounded-md flex flex-row items-start justify-start whitespace-nowrap z-[1] hover:bg-[#8f4dde]  ">
-                            <div className="w-[3.563rem] relative text-[0.875rem] leading-[1.875rem] font-nunito text-white text-center inline-block min-w-[3.563rem] z-[1]">
+                            <a href="/marketplace" className="w-[3.563rem] relative text-[0.875rem] leading-[1.875rem] font-nunito text-white text-center inline-block min-w-[3.563rem] z-[1]">
                                 Join Now
-                            </div>
+                            </a>
                         </button>
                         <button className="cursor-pointer [border:none] py-[0.313rem] px-[0.938rem] bg-plum-200 rounded-md flex flex-row items-start justify-start whitespace-nowrap z-[1] hover:bg-[#a875c7]">
                             <div className="w-[4.5rem] relative text-[0.875rem] leading-[1.875rem] font-nunito text-black text-center inline-block min-w-[4.5rem] z-[1]">

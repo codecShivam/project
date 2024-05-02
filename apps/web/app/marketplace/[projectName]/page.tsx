@@ -10,6 +10,7 @@ import Image from "next/image";
 import Updates from "./components/Updates";
 import Commits from "./components/Commits";
 import Footer from "../components/Footer"
+import Tweets from "./components/Tweets";
 
 interface ProjectDetailsProps {
     params: { projectName: string };
@@ -77,6 +78,7 @@ export default function ProjectDetails({ params }: ProjectDetailsProps) {
                 <Overview projectsList={projectData.projectList} />
                 {/* Pass teamMembers to Team component */}
                 {projectData.projectList[0]?.teamMembers && <Team teamMembers={projectData.projectList[0].teamMembers} />}
+                <Tweets />
                 <Updates />
                 {/* <Commits /> */}
                 <Link href={`/marketplace/${params.projectName}/editform`} className="flex w-full justify-center mb-6">
