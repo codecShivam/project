@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -185,3 +186,29 @@ textarea::-webkit-scrollbar-thumb:hover {
 ::-webkit-scrollbar-thumb:hover {
     background: #722EB8; /* Thumb color on hover */
 }
+
+
+select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  height: auto;
+  max-height: 120px; 
+  overflow-y: auto;
+  position: relative;
+  z-index: 11;
+}
+
+option {
+  padding: 8px;
+}
+
+select::-ms-expand {
+  display: none;
+}
+select {
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+}
+

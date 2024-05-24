@@ -1,60 +1,73 @@
-'use client'
-import React, { useState } from 'react';
-import copy from "../../../public/images/dashboard/copy.svg"
-import avatar from "../../../public/images/dashboard/avatar.png"
+"use client";
+import React, { useState, useEffect } from "react";
+import copy from "../../../public/images/dashboard/copy.svg";
+import supabase from "../../../supabase";
+import avatar from "../../../public/images/user.png"
 
 interface User {
     id: number;
-    name: string;
-    title: string;
+    username: string;
+    tagline: string;
     projects: number;
     commits: number;
-    address: string;
+    wallet_id: string;
     rewards: number;
-    profileImgSrc: string;
+    logoImageUrl: string;
     profileImgAlt: string;
+
 }
 
 interface ProfileProps {
-    name: string;
-    title: string;
+    username: string;
+    tagline: string;
     projects: number;
     commits: number;
-    address: string;
+    wallet_id: string;
     rewards: number;
-    profileImgSrc: string;
+    logoImageUrl: string;
     profileImgAlt: string;
 }
 
 const ProfileCard: React.FC<ProfileProps> = ({
-    name,
-    title,
+    username,
+    tagline,
     projects,
     commits,
-    address,
+    wallet_id,
     rewards,
-    profileImgSrc,
+    logoImageUrl,
     profileImgAlt,
 }) => {
+    const truncateWalletId = (wallet_id: string) => {
+        if (wallet_id.length > 10) {
+            return wallet_id.substring(0, 10) + "...";
+        }
+        return wallet_id;
+    };
+
+    const copyToClipboard = (wallet_id: string) => {
+        navigator.clipboard.writeText(wallet_id);
+        alert("Wallet ID copied to clipboard");
+    };
     return (
-        <section className="grow px-4 py-4 w-full rounded-xl bg-neutral-900 max-md:mt-6 max-w-full">
+        <section className="grow px-4 py-4 w-full rounded-xl bg-neutral-900  max-w-full">
             <div className="flex">
-                <figure className="flex flex-row">
+                <div className="flex w-[99px]  items-center justify-center flex-row">
                     <img
                         loading="lazy"
-                        src={profileImgSrc}
+                        src={avatar.src}
                         alt={profileImgAlt}
-                        className="grow object-cover max-md:mt-6"
+                        className="grow object-cover "
                     />
-                </figure>
+                </div>
                 <div className="flex flex-col ml-2 w-9/12">
-                    <div className="flex flex-col max-md:mt-6">
+                    <div className="flex flex-col ">
                         <div className="flex gap-5 px-px">
                             <div className="flex flex-col flex-1 mt-2">
-                                <h1 className="text-base font-medium font-nunito text-white">{name}</h1>
-                                <p className="mt-2.5 font-nunito text-xs text-white text-opacity-80">{title}</p>
+                                <h1 className="text-base font-medium font-nunito text-white">{username}</h1>
+                                <p className="mt-2.5 font-nunito text-xs text-white text-opacity-80">Chief@{tagline}</p>
                                 <div className="self-start justify-self-end mt-auto flex px-2 w-fit py-1.5 text-sm text-[#954AD2] rounded-md bg-neutral-950">
-                                    <span className="sm:text-sm text-xs">{address}</span>
+                                    <span className="sm:text-sm text-xs">{truncateWalletId(wallet_id)}</span>
                                     <img
                                         loading="lazy"
                                         src={copy.src}
@@ -82,155 +95,54 @@ const ProfileCard: React.FC<ProfileProps> = ({
     );
 };
 
-const users: User[] = [
-    {
-        id: 1,
-        name: 'Drac',
-        title: 'Chef @solcanvas',
-        projects: 24,
-        commits: 56,
-        address: '8bxPvX4....',
-        rewards: 23,
-        profileImgSrc: avatar.src,
-        profileImgAlt: 'Profile image of Drac',
-    },
-    {
-        id: 2,
-        name: 'Drac 1',
-        title: 'Chef @solcanvas',
-        projects: 24,
-        commits: 56,
-        address: '8bxPvX4....',
-        rewards: 23,
-        profileImgSrc: avatar.src,
-        profileImgAlt: 'Profile image of Drac',
-    },
-    {
-        id: 3,
-        name: 'Drac 2',
-        title: 'Chef @solcanvas',
-        projects: 24,
-        commits: 56,
-        address: '8bxPvX4....',
-        rewards: 23,
-        profileImgSrc: avatar.src,
-        profileImgAlt: 'Profile image of Drac',
-    },
-    {
-        id: 4,
-        name: 'Drac 3',
-        title: 'Chef @solcanvas',
-        projects: 24,
-        commits: 56,
-        address: '8bxPvX4....',
-        rewards: 23,
-        profileImgSrc: avatar.src,
-        profileImgAlt: 'Profile image of Drac',
-    },
-    {
-        id: 5,
-        name: 'Drac 4',
-        title: 'Chef @solcanvas',
-        projects: 24,
-        commits: 56,
-        address: '8bxPvX4....',
-        rewards: 23,
-        profileImgSrc: avatar.src,
-        profileImgAlt: 'Profile image of Drac',
-    },
-    {
-        id: 6,
-        name: 'Drac 5',
-        title: 'Chef @solcanvas',
-        projects: 24,
-        commits: 56,
-        address: '8bxPvX4....',
-        rewards: 23,
-        profileImgSrc: avatar.src,
-        profileImgAlt: 'Profile image of Drac',
-    },
-    {
-        id: 7,
-        name: 'Drac 6',
-        title: 'Chef @solcanvas',
-        projects: 24,
-        commits: 56,
-        address: '8bxPvX4....',
-        rewards: 23,
-        profileImgSrc: avatar.src,
-        profileImgAlt: 'Profile image of Drac',
-    },
-    {
-        id: 8,
-        name: 'Drac 7',
-        title: 'Chef @solcanvas',
-        projects: 24,
-        commits: 56,
-        address: '8bxPvX4....',
-        rewards: 23,
-        profileImgSrc: avatar.src,
-        profileImgAlt: 'Profile image of Drac',
-    },
-    {
-        id: 9,
-        name: 'Drac 8',
-        title: 'Chef @solcanvas',
-        projects: 24,
-        commits: 56,
-        address: '8bxPvX4....',
-        rewards: 23,
-        profileImgSrc: avatar.src,
-        profileImgAlt: 'Profile image of Drac',
-    },
-    {
-        id: 10,
-        name: 'Drac 9',
-        title: 'Chef @solcanvas',
-        projects: 24,
-        commits: 56,
-        address: '8bxPvX4....',
-        rewards: 23,
-        profileImgSrc: avatar.src,
-        profileImgAlt: 'Profile image of Drac',
-    },
-    {
-        id: 11,
-        name: 'Drac 10',
-        title: 'Chef @solcanvas',
-        projects: 24,
-        commits: 56,
-        address: '8bxPvX4....',
-        rewards: 23,
-        profileImgSrc: avatar.src,
-        profileImgAlt: 'Profile image of Drac',
-    },
-    {
-        id: 12,
-        name: 'Drac 11',
-        title: 'Chef @solcanvas',
-        projects: 24,
-        commits: 56,
-        address: '8bxPvX4....',
-        rewards: 23,
-        profileImgSrc: avatar.src,
-        profileImgAlt: 'Profile image of Drac',
-    },
-    {
-        id: 13,
-        name: 'Drac 12',
-        title: 'Chef @solcanvas',
-        projects: 24,
-        commits: 56,
-        address: '8bxPvX4....',
-        rewards: 23,
-        profileImgSrc: avatar.src,
-        profileImgAlt: 'Profile image of Drac',
-    },
-];
-
 export default function AdminDashboard() {
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [selectedUser, setSelectedUser] = useState<User | null>(null);
+    const [users, setUsers] = useState<User[]>([]);
+
+    const truncateWalletId = (wallet_id: any) => {
+        if (typeof wallet_id === 'string' && wallet_id.length > 10) {
+            return wallet_id.substring(0, 10) + "...";
+        }
+        return wallet_id;
+    };
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('project_listing')
+                    .select('id, username, tagline, wallet_id, logoImageUrl');
+
+                if (error) {
+                    console.error("Error fetching users:", error.message);
+                    return;
+                }
+
+                const usersWithProjects = await Promise.all(data.map(async (user: any) => {
+                    const { data: projectData, error: projectError } = await supabase
+                        .from('project_listing')
+                        .select('*', { count: 'exact' })
+                        .eq('username', user.username)
+                        .single();
+
+                    if (projectError) {
+                        console.error("Error fetching projects for user:", user.username, projectError.message);
+                        return { ...user, projects: 0 };
+                    }
+
+                    return { ...user, projects: projectData.count || 0 };
+                }));
+
+                setUsers(usersWithProjects);
+            } catch (error: any) {
+                console.error("Error fetching users:", error.message);
+            }
+        };
+
+        fetchUsers();
+    }, []);
+    console.log(users)
+
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value);
@@ -239,11 +151,11 @@ export default function AdminDashboard() {
 
     const handleSuggestionClick = (user: User) => {
         setSelectedUser(user);
-        setSearchTerm('');
+        setSearchTerm("");
     };
 
     const filteredUsers = users.filter((user) =>
-        user.name.toLowerCase().includes(searchTerm.toLowerCase())
+        user.username.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -266,7 +178,7 @@ export default function AdminDashboard() {
                                     onClick={() => handleSuggestionClick(user)}
                                     className="px-4 py-2 cursor-pointer hover:bg-neutral-800"
                                 >
-                                    {user.name}
+                                    {user.username}
                                 </div>
                             ))}
                         </div>
@@ -278,26 +190,26 @@ export default function AdminDashboard() {
                     {selectedUser ? (
                         <ProfileCard
                             key={selectedUser.id}
-                            name={selectedUser.name}
-                            title={selectedUser.title}
+                            username={selectedUser.username}
+                            tagline={selectedUser.tagline}
                             projects={selectedUser.projects}
                             commits={selectedUser.commits}
-                            address={selectedUser.address}
+                            wallet_id={selectedUser.wallet_id}
                             rewards={selectedUser.rewards}
-                            profileImgSrc={selectedUser.profileImgSrc}
+                            logoImageUrl={selectedUser.logoImageUrl}
                             profileImgAlt={selectedUser.profileImgAlt}
                         />
                     ) : (
                         filteredUsers.map((user) => (
                             <ProfileCard
                                 key={user.id}
-                                name={user.name}
-                                title={user.title}
+                                username={user.username}
+                                tagline={user.tagline}
                                 projects={user.projects}
                                 commits={user.commits}
-                                address={user.address}
+                                wallet_id={user.wallet_id}
                                 rewards={user.rewards}
-                                profileImgSrc={user.profileImgSrc}
+                                logoImageUrl={user.logoImageUrl}
                                 profileImgAlt={user.profileImgAlt}
                             />
                         ))
