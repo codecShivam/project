@@ -59,7 +59,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
   return (
     
 
-    <div className="flex flex-col grow pt-4 w-full rounded-xl bg-neutral-900">
+    <div className="flex flex-col grow pt-4 w-full rounded-xl font-silkscreen bg-neutral-900">
       {status === "live" && (
         <div className="flex flex-1 justify-between gap-5 w-full ">
           <div className="flex gap-2 self-start ">
