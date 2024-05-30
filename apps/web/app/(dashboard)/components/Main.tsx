@@ -5,6 +5,7 @@ import upload from "../../../public/images/dashboard/cloud.svg";
 import copyIcon from "../../../public/images/dashboard/copy.svg";
 import supabase from "../../../supabase";
 import { useWallet } from "@solana/wallet-adapter-react";
+import { useRouter } from "next/navigation";
 
 interface ProjectProps {
   logoImageUrl: string;
@@ -196,6 +197,15 @@ const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [username, setUsername] = useState("");
   const { publicKey } = useWallet();
+  const router = useRouter();
+  useEffect(() => {
+    if (!publicKey) {
+      router.push('/connect_wallet');
+    }
+  }, [publicKey, router]);
+
+
+    
 
   const walletId = publicKey?.toString() || "";
   console.log("walletId", walletId);
@@ -280,15 +290,15 @@ const Main = () => {
                 <ProjectList walletId={walletId} />
               </div>
             </div>
-            <div className="flex flex-col gap-12">
+            <div className="flex font-silkscreen flex-col gap-12">
               <div className="flex flex-col sm:ml-5 ml-0 w-full">
                 <StatCard label="Your Projects" value={projectCount} />
               </div>
               <div className="flex flex-col sm:ml-5 ml-0 w-full">
-                <StatCard label="Your Projects" value={13} />
+                <StatCard label="Your Commits" value={13} />
               </div>
               <div className="flex flex-col sm:ml-5 ml-0 w-full">
-                <StatCard label="Your Projects" value={13} />
+                <StatCard label="Your Rewards" value={1} />
               </div>
             </div>
           </div>
