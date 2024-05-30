@@ -49,9 +49,14 @@ export default function Rewards() {
   const [showClaimedMessage, setShowClaimedMessage] = useState(false);
   const [nftImage, setNftImage] = useState('');
   const [loading, setLoading] = useState(false);
-  // const router = useRouter();
+  const router = useRouter();
   const { publicKey } = useWallet();
 
+  useEffect(() => {
+    if (!publicKey) {
+      router.push('/connect_wallet');
+    }
+  }, [publicKey, router]);
 
   const handleClaim = (rewardType: 'beta') => {
     setClaimSuccess(true);

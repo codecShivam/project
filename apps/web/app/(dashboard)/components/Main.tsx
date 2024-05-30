@@ -197,15 +197,7 @@ const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [username, setUsername] = useState("");
   const { publicKey } = useWallet();
-  const router = useRouter();
-  useEffect(() => {
-    setTimeout(() => {
-      if (!publicKey) {
-        router.push('/connect_wallet');
-      }
-    }, 1000);
-  
-  }, [publicKey, router]);
+
 
 
     
