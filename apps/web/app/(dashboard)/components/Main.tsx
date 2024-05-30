@@ -199,9 +199,12 @@ const Main = () => {
   const { publicKey } = useWallet();
   const router = useRouter();
   useEffect(() => {
-    if (!publicKey) {
-      router.push('/connect_wallet');
-    }
+    setTimeout(() => {
+      if (!publicKey) {
+        router.push('/connect_wallet');
+      }
+    }, 1000);
+  
   }, [publicKey, router]);
 
 
