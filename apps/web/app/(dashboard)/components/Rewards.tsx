@@ -5,7 +5,6 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import backIcon from "../../../public/images/dashboard/back.svg";
 import heliusApiUrl from '../../constant';
-console.log('dfhldsjfkljdsklheliusApiUrl' + heliusApiUrl);
 const nftImageUrl = 'https://i.ibb.co/Rg9M1tT/Beta-NFT-1.png';
 const apiUrl = 'https://mainnet.helius-rpc.com/?api-key=' + heliusApiUrl;
 
