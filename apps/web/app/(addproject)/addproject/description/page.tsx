@@ -6,6 +6,7 @@ import { useFormData } from '../context/FormDataContext';
 import next from '../../../../public/images/next.png';
 import { useWallet } from "@solana/wallet-adapter-react";
  import { useUser } from "../../../(useronboarding)/context/UserContext";
+ import { useRouter } from "next/navigation";
 
 export default function Description() {
   const { formData, updateFormData } = useFormData();
@@ -13,7 +14,7 @@ export default function Description() {
   const { publicKey } = useWallet();
   const walletId = publicKey?.toString() || '';
 const {name} = useUser();
-
+const router = useRouter();
  console.log(name)
   
 const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -25,6 +26,10 @@ const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(newDescription.slice(0, 1000));
     updateFormData({ description: newDescription.slice(0, 1000) });
   }
+};
+const handlePreviousClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  e.preventDefault();   
+  router.push('/addproject/links');
 };
 
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -68,7 +73,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     projectData.username = onboardingData[0]?.name;
 
     const { data, error } = await supabase.from("project_listing").insert([projectData]);
-
+router.push('/dashboard')
     if (error) {
       throw new Error(`Error inserting data into project_listing table: ${error.message}`);
     }
@@ -115,12 +120,12 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           onChange={handleDescriptionChange}
         />
         <div className="flex sm:w-[457px] gap-5 justify-between w-full text-[16px] font-medium tracking-wide leading-7 whitespace-nowrap flex-wrap sm:mt-10 mt-8 max-w-full">
-          <a
-            href="/addproject/team"
+        <button
+            onClick={handlePreviousClick}
             className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-8 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]"
           >
             <div>Back</div>
-          </a>
+          </button>
           <button type="submit" className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]">
             <div>Finish</div>
             <Image

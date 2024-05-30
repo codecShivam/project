@@ -9,7 +9,7 @@ import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 
 const Starter = () => {
 
-    const endpoint = web3.clusterApiUrl('devnet');
+    const endpoint = web3.clusterApiUrl('');
 
     const wallets = [
         new walletAdapterWallets.PhantomWalletAdapter(),

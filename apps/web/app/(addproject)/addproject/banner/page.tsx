@@ -5,120 +5,17 @@ import required from "../../../../public/images/required.png";
 import next from "../../../../public/images/next.png";
 import Image from "next/image";
 import upload from "../../../../public/images/upload.png";
-import  supabase  from "../../../../supabase";
+import supabase from "../../../../supabase";
 import { useRouter } from "next/navigation";
-import {useFormData} from '../context/FormDataContext'
+import { useFormData } from '../context/FormDataContext'
 
 export default function ProjectBanner() {
-//   const [logoFile, setLogoFile] = useState<File | null>(null); // State to hold the selected logo file
-//   const [bannerFile, setBannerFile] = useState<File | null>(null); // State to hold the selected banner file
-//   const { formData, updateFormData } = useFormData();
-// const router = useRouter()
-// const {formData, updateFormData} = useFormData();
-//   console.log("FormData:", formData);
-//   const handleFileSelect = (file: File, fileType: string) => {
-//     if (fileType === "logo") {
-//         setLogoFile(file);
-//     } else if (fileType === "banner") {
-//         setBannerFile(file);
-//     }
-// };
 
-//   const handleDrop = (
-//     event: React.DragEvent<HTMLDivElement>,
-//     fileType: string
-//   ) => {
-//     event.preventDefault();
-//     const droppedFile = event.dataTransfer.files?.[0];
-//     if (droppedFile) {
-//       handleFileSelect(droppedFile, fileType);
-//     }
-//   };
-
-//   const handleInputChange = (
-//     event: ChangeEvent<HTMLInputElement>,
-//     fileType: string
-//   ) => {
-//     const selectedFile = event.target.files?.[0];
-//     if (selectedFile) {
-//       handleFileSelect(selectedFile, fileType);
-//     }
-//   };
-
-//   const clearFile = (fileType: string) => {
-//     if (fileType === "logo") {
-//       setLogoFile(null);
-//     } else if (fileType === "banner") {
-//       setBannerFile(null);
-//     }
-//   };
-
-//   const uploadImage = async (file: File, storagePath: string) => {
-//     const { data, error } = await supabase.storage
-//       .from("bucketName")
-//       .upload(storagePath, file);
-//     if (error) {
-//       throw error;
-//     }
-//     return data;
-//   };
-//   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-//     event.preventDefault();
-
-//     try {
-//       // Image uploads
-//       const logoUploadResult = logoFile
-//           ? await supabase.storage.from('logo_image').upload(`project_logo_${Date.now()}`, logoFile)
-//           : null;
-
-//       const bannerUploadResult = bannerFile
-//           ? await supabase.storage.from('banner_image').upload(`project_banner_${Date.now()}`, bannerFile)
-//           : null;
-
-//       if (logoUploadResult?.error || bannerUploadResult?.error) {
-//           throw new Error('Image upload failed.');
-//       }
-
-//       // Construct Image Paths
-//       const logoImagePath = logoUploadResult 
-//           ? constructImageUrl('logo_image', logoUploadResult.data.path)
-//           : null; 
-
-//       const bannerImagePath = bannerUploadResult 
-//           ? constructImageUrl('banner_image', bannerUploadResult.data.path)
-//           : null;
-
-//       // Database insert
-//       const { data, error } = await supabase.from('project_listing').insert({
-//           logoImageUrl: logoImagePath,
-//           bannerImageUrl: bannerImagePath,
-//           // ... other project details
-//       });
-
-//       if (error) throw error;
-
-//       console.log('Project created:', data); 
-//       setLogoFile(null);
-//       setBannerFile(null);
-//   } catch (error) {
-//       console.error('Error submitting data:', error);
-//   }
-//   finally{
-//     router.push("/addproject/team")
-//   }
-// };
-
-//   const constructImageUrl = (bucketName: string, imagePath: string) => {
-//         const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-//         return `${supabaseUrl}/storage/v1/object/public/${bucketName}/${encodeURIComponent(imagePath)}`;
-//   };
-
-
- const { formData, updateFormData } = useFormData();
+  const { formData, updateFormData } = useFormData();
   const [logoFile, setLogoFile] = useState<File | null>(null); // State to hold the selected logo file
   const [bannerFile, setBannerFile] = useState<File | null>(null); // State to hold the selected banner file
   const router = useRouter();
-console.log("FormData:", formData);
+  console.log("FormData:", formData);
   const handleFileSelect = (file: File, fileType: string) => {
     if (fileType === 'logo') {
       setLogoFile(file);
@@ -182,7 +79,7 @@ console.log("FormData:", formData);
       updateFormData({
         logoImageUrl: logoImagePath,
         bannerImageUrl: bannerImagePath,
-      });  
+      });
 
       // Redirect to the next step
       router.push('/addproject/team');
@@ -197,6 +94,11 @@ console.log("FormData:", formData);
     return `${supabaseUrl}/storage/v1/object/public/${bucketName}/${encodeURIComponent(imagePath)}`;
   };
 
+
+  const handllePreviousClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    router.push("/addproject/categories");
+  }
 
 
 
@@ -342,31 +244,31 @@ console.log("FormData:", formData);
           />
         </div>
         <div className="flex gap-5 justify-between w-full text-[16px] font-medium tracking-wide leading-7 whitespace-nowrap flex-wrap sm:mt-20 mt-10 max-w-full">
-          <a
-            href="/addproject"
+        <button
+            onClick={handllePreviousClick}
             className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-8 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]"
           >
             <div>Back</div>
-          </a>
+          </button>
           <button type="submit">
-          <a
-            // href="/addproject/team"
-            className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]"
-          >
-            <div>Next</div>
-            <Image
-              alt=""
-              width={100}
-              height={100}
-              loading="lazy"
-              src={next}
-              className="shrink-0 w-[12px] aspect-[0.76] stroke-[2px] stroke-white"
-            />
-          </a>
+            <a
+              // href="/addproject/team"
+              className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]"
+            >
+              <div>Next</div>
+              <Image
+                alt=""
+                width={100}
+                height={100}
+                loading="lazy"
+                src={next}
+                className="shrink-0 w-[12px] aspect-[0.76] stroke-[2px] stroke-white"
+              />
+            </a>
           </button>
         </div>
       </div>
     </form>
   );
 }
-    
+
