@@ -124,6 +124,7 @@ export default function Rewards() {
       console.error(error);
     }
   };
+  
 
   const RewardCard = ({ imageSrc, altText, claimed }:
     RewardCardProps
