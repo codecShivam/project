@@ -15,8 +15,7 @@ export default function Updates() {
 
   useEffect(() => {
     const fetchProjectUpdates = async () => {
-      const currentUrl = window.location.href;
-      const projectName = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
+      const projectName = window.location.href.substring(window.location.href.lastIndexOf("/") + 1);
 
       const { data: projects, error } = await supabase
         .from("project_listing")
@@ -34,7 +33,11 @@ export default function Updates() {
       }
 
       const projectUpdates = projects[0]?.project_update || [];
-      setFormData((prevData) => ({ ...prevData, projectUpdates }));
+
+      setFormData((prevData) => ({
+        ...prevData,
+        projectUpdates: projectUpdates.sort((a:any, b:any) => new Date(b.date).getTime() - new Date(a.date).getTime()),
+      }));
     };
 
     fetchProjectUpdates();
@@ -97,6 +100,11 @@ export default function Updates() {
 
     console.log("Project updated successfully:", updatedData);
 
+    setFormData((prevData) => ({
+      ...prevData,
+      projectUpdates: [newUpdate, ...prevData.projectUpdates],
+    }));
+
     setNewUpdateText("");
     setShowInput(false);
   };
@@ -136,7 +144,6 @@ export default function Updates() {
 
       {formData.projectUpdates
         .slice(0, showAllUpdates ? formData.projectUpdates.length : 3)
-        .reverse()
         .map((update, index) => (
           <div
             key={index}

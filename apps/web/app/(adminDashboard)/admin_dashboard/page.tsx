@@ -3,10 +3,13 @@ import React, { useState } from "react";
 import Main from "../components/Main";
 import Projects from "../components/Projects";
 import Users from "../components/Users";
+import {useRouter} from "next/navigation";
 
 export default function Home() {
   const [activeComponent, setActiveComponent] = useState("home");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const router = useRouter()
 
   const renderComponent = () => {
     switch (activeComponent) {
@@ -25,12 +28,16 @@ export default function Home() {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const handleExit = () => {
+    router.push("/marketplace");
+  }
+
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen bg-black">
       <div
-        className={`fixed top-0 left-0 h-full bg-[#0A0A0A] z-40 transition-transform duration-300 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} sm:relative sm:translate-x-0`}
+        className={`fixed top-0 left-0 h-full bg-[#0A0A0A] z-40 transition-transform duration-300 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} lg:relative lg:translate-x-0`}
       >
-        <div className="sm:flex font-silkscreen h-full flex-col justify-between">
+        <div className="lg:flex font-silkscreen h-full flex-col justify-between">
           <div className="flex flex-col grow px-9 pt-14 pb-9 w-full text-base whitespace-nowrap">
             <div className="text-xl text-[#954AD2] font-bold">Solcavas</div>
             <button
@@ -61,7 +68,7 @@ export default function Home() {
               Users
             </button>
           </div>
-          <button className="self-center mb-12 text-[#954AD2]">Exit</button>
+          <button onClick={handleExit} className="self-center mb-12 text-[#954AD2]">Exit</button>
         </div>
       </div>
       <div className="flex-1 md:flex h-full relative overflow-y-auto">
